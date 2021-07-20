@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private bool facingRight;
     [SerializeField] private float jumpForce;
-    //[SerializeField] private float moveSpeed;
+    [SerializeField] private float moveSpeed;
    
 
 
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement(float horizontal,float vertical)
     {
         anim.SetFloat("speed", Mathf.Abs(horizontal));
-        //rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
