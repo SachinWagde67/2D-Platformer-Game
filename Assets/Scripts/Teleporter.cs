@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Teleporter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private string sceneName; 
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if(other.CompareTag("player"))
+        {
+            Debug.Log("Level Completed");
+            NextScene(sceneName);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void NextScene(string SceneName)
     {
-        
+        SceneManager.LoadScene(SceneName);
     }
 }
