@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Teleporter : MonoBehaviour
 {
-    [SerializeField] private string sceneName; 
+    [SerializeField] private string sceneName;
+           
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,3 +22,5 @@ public class Teleporter : MonoBehaviour
         SceneManager.LoadScene(SceneName);
     }
 }
+
+
