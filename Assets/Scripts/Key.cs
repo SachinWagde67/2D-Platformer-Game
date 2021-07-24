@@ -20,7 +20,6 @@ public class Key : MonoBehaviour
         KeyCollider = GetComponent<BoxCollider2D>();
     }
 
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("player"))
