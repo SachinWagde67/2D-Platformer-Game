@@ -40,8 +40,7 @@ public class Key : MonoBehaviour
         while (counter < duration)
         {
             counter += Time.deltaTime;
-            float alpha = Mathf.Lerp(1, 0, counter/duration);
-            Debug.Log(alpha);
+            float alpha = Mathf.Lerp(1, 0, counter);
             spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
             yield return null;
         }       
