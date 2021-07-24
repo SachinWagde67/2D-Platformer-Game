@@ -265,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpForce: 12.5
   CrouchSpeed: 0
-  speed: 25
+  speed: 30
   AirControl: 1
   WhatIsGround:
     serializedVersion: 2
@@ -273,4 +273,5 @@ MonoBehaviour:
   anim: {fileID: 7573510260743553009}
   GroundCheck: {fileID: 1481331366}
   CeilingCheck: {fileID: 1955802426}
+  scoreManager: {fileID: 0}
   CrouchDisableCollider: {fileID: 4564753336405912299}

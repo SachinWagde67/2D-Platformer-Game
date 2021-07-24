@@ -11,18 +11,19 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Animator anim;
 	[SerializeField] private Transform GroundCheck;                          
 	[SerializeField] private Transform CeilingCheck;                         
+	[SerializeField] private ScoreManager scoreManager;
 	[SerializeField] private Collider2D CrouchDisableCollider;
 
 	const float GroundedRadius = .2f; 
 	const float CeilingRadius = .2f; 
-	private bool Grounded;            
-	private Rigidbody2D rb;
-	private bool facingRight = true;  
-	private Vector3 velocity = Vector3.zero;
-	private bool wasCrouching = false;
 	private float horizontal;
-	private bool jump = false;
+	private bool Grounded;            
+	private bool facingRight = true;  
+	private bool wasCrouching = false;
 	private bool crouch = false;
+	private bool jump = false;
+	private Rigidbody2D rb;
+	private Vector3 velocity = Vector3.zero;
 
 	private void Awake()
 	{
@@ -134,4 +135,10 @@ public class PlayerController : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+	public void KeyPickUp()
+    {
+		Debug.Log("Picked up a key");
+		scoreManager.IncrementScore(10);
+    }
 }
