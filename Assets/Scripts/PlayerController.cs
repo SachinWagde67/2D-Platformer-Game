@@ -138,7 +138,14 @@ public class PlayerController : MonoBehaviour
 
 	public void KeyPickUp()
     {
-		Debug.Log("Picked up a key");
 		scoreManager.IncrementScore(10);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("enemy"))
+        {
+			Debug.Log("You Died!");
+        }
     }
 }
