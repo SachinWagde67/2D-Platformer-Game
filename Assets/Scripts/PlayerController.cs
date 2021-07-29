@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private Transform CeilingCheck;
 	[SerializeField] private ScoreManager scoreManager;
 	[SerializeField] private GameManager gameManager;
-	[SerializeField] public float health;
+	[SerializeField] public int health;
 
 	const float GroundedRadius = .2f; 
 	const float CeilingRadius = .2f; 
@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
         }
 		if(other.gameObject.CompareTag("deadzone"))
         {
-			gameManager.StopTime();
+			gameManager.EnableGameOver();
         }
     }
 

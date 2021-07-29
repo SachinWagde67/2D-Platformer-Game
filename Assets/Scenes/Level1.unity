@@ -416,9 +416,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b195fe7ee77114eab5325bec4371a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Heart1: {fileID: 382018869}
-  Heart2: {fileID: 443279080}
-  Heart3: {fileID: 1509215338}
+  hearts:
+  - {fileID: 1509215338}
+  - {fileID: 443279080}
+  - {fileID: 382018869}
   GameOverCanvas: {fileID: 1326487253}
   HeartCanvas: {fileID: 604823650}
 --- !u!1 &530946452
@@ -681,7 +682,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SampleScene
+          m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &558972695
