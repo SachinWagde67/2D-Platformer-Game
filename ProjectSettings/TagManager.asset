@@ -6,6 +6,8 @@ TagManager:
   tags:
   - player
   - teleporter
+  - enemy
+  - deadzone
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 
@@ -42,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 68022233
+    locked: 0
+  - name: Foreground
+    uniqueID: 1203269129
+    locked: 0
+  - name: Entity
+    uniqueID: 3097756845
     locked: 0

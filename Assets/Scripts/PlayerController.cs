@@ -10,9 +10,10 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private LayerMask WhatIsGround;                          
 	[SerializeField] private Animator anim;
 	[SerializeField] private Transform GroundCheck;                          
-	[SerializeField] private Transform CeilingCheck;                         
+	[SerializeField] private Transform CeilingCheck;
 	[SerializeField] private ScoreManager scoreManager;
-	[SerializeField] private Collider2D CrouchDisableCollider;
+	[SerializeField] private GameManager gameManager;
+	[SerializeField] public float health;
 
 	const float GroundedRadius = .2f; 
 	const float CeilingRadius = .2f; 
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
 		{
 			crouch = false;
 		}
+		CheckHealth();
 	}
 
     private void FixedUpdate()
@@ -90,15 +92,9 @@ public class PlayerController : MonoBehaviour
 					anim.SetBool("crouch", true);
 				}
 				move *= CrouchSpeed;
-
-				if (CrouchDisableCollider != null)
-					CrouchDisableCollider.enabled = false;
 			}
 			else
 			{
-				if (CrouchDisableCollider != null)
-					CrouchDisableCollider.enabled = true;
-
 				if (wasCrouching)
 				{
 					wasCrouching = false;
@@ -138,7 +134,28 @@ public class PlayerController : MonoBehaviour
 
 	public void KeyPickUp()
     {
-		Debug.Log("Picked up a key");
 		scoreManager.IncrementScore(10);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("enemy"))
+        {
+			health -= 1;
+			gameManager.Heart(health);
+        }
+		if(other.gameObject.CompareTag("deadzone"))
+        {
+			gameManager.StopTime();
+        }
+    }
+
+	private void CheckHealth()
+    {
+		if(health <= 0)
+        {
+			anim.SetTrigger("dead");
+			speed = 0;
+        }
     }
 }

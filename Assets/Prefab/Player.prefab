@@ -102,8 +102,8 @@ GameObject:
   - component: {fileID: 7573510260743553008}
   - component: {fileID: 7573510260743553009}
   - component: {fileID: 2073334918733422631}
-  - component: {fileID: 4564753336405912299}
-  - component: {fileID: 1777762851924845548}
+  - component: {fileID: 4795750107872741224}
+  - component: {fileID: 2926095851490525659}
   - component: {fileID: 1752190550}
   m_Layer: 0
   m_Name: Player
@@ -165,8 +165,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1197210451
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c4d7d6470acd7bf45971042161c6e018, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -210,7 +210,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
@@ -219,8 +219,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &4564753336405912299
-CapsuleCollider2D:
+--- !u!61 &4795750107872741224
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -228,15 +228,25 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 7573510260743552974}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 813c0b3cab6b9b249a14bdb8124c2817, type: 2}
+  m_Material: {fileID: 6200000, guid: c325d97ce27776645bad5015a39d864d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0028645198, y: 0.99797904}
-  m_Size: {x: 0.4724401, y: 2.0620813}
-  m_Direction: 0
---- !u!70 &1777762851924845548
-CapsuleCollider2D:
+  m_Offset: {x: 0.0015157312, y: 1.1968592}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.42, y: 0.1}
+    oldSize: {x: 3.7534883, y: 2.8325582}
+    newSize: {x: 3.7534883, y: 2.8325582}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.44956395, y: 1.6039631}
+  m_EdgeRadius: 0
+--- !u!58 &2926095851490525659
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -244,13 +254,13 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 7573510260743552974}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 813c0b3cab6b9b249a14bdb8124c2817, type: 2}
+  m_Material: {fileID: 6200000, guid: c325d97ce27776645bad5015a39d864d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10583838, y: 0.5949356}
-  m_Size: {x: 0.6642687, y: 1.2559946}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0.25}
+  serializedVersion: 2
+  m_Radius: 0.28542733
 --- !u!114 &1752190550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4305c34411c98488792bacad5b878d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 12.5
+  JumpForce: 6.2
   CrouchSpeed: 0
   speed: 30
   AirControl: 1
@@ -274,4 +284,5 @@ MonoBehaviour:
   GroundCheck: {fileID: 1481331366}
   CeilingCheck: {fileID: 1955802426}
   scoreManager: {fileID: 0}
-  CrouchDisableCollider: {fileID: 4564753336405912299}
+  gameManager: {fileID: 0}
+  health: 3
