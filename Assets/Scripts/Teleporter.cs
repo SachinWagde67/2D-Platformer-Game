@@ -11,14 +11,15 @@ public class Teleporter : MonoBehaviour
     {
         if(other.CompareTag("player"))
         {
-            NextScene(sceneName);
+            SoundManager.Instance.Play(Sounds.Teleporter);
+            Invoke(nameof(NextScene),1f);
         }
     }
 
-    private void NextScene(string SceneName)
+    private void NextScene()
     {
         LevelManager.Instance.MarkCurrentLevelComplete();
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(sceneName);
     }
 }
 

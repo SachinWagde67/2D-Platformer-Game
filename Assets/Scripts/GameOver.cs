@@ -9,11 +9,13 @@ public class GameOver : MonoBehaviour
 
     public void RestartBtn(string SceneName)
     {
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         SceneManager.LoadScene(SceneName);
     }
 
     public void ExitBtn()
     {
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         Application.Quit();
     }
 }

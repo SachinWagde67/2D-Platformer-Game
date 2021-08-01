@@ -16,12 +16,14 @@ public class Lobby : MonoBehaviour
 
     public void NewGameBtn()
     {
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         BtnDisable.SetActive(false);
         BtnEnable.SetActive(true);
     }
 
     public void LevelBtn(string sceneName)
     {
+       
         LevelStatus levelStatus = LevelManager.Instance.GetLevelStatus(sceneName);
         switch (levelStatus)
         {
@@ -30,6 +32,7 @@ public class Lobby : MonoBehaviour
                 break;
 
             case LevelStatus.Unlocked:
+                SoundManager.Instance.Play(Sounds.ButtonClick);
                 SceneManager.LoadScene(sceneName);
                 break;
 
