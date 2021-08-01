@@ -17,6 +17,7 @@ public class Teleporter : MonoBehaviour
 
     private void NextScene(string SceneName)
     {
+        LevelManager.Instance.MarkCurrentLevelComplete();
         SceneManager.LoadScene(SceneName);
     }
 }

@@ -22,7 +22,21 @@ public class Lobby : MonoBehaviour
 
     public void LevelBtn(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        LevelStatus levelStatus = LevelManager.Instance.GetLevelStatus(sceneName);
+        switch (levelStatus)
+        {
+            case LevelStatus.Locked:
+                Debug.Log("Can't Play this Level");
+                break;
+
+            case LevelStatus.Unlocked:
+                SceneManager.LoadScene(sceneName);
+                break;
+
+            case LevelStatus.Completed:
+                SceneManager.LoadScene(sceneName);
+                break;
+        }
     }
 
     public void ExitBtn()
