@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
 	const float GroundedRadius = .2f; 
 	const float CeilingRadius = .2f; 
 	private float horizontal;
-	private bool Grounded;            
+	private bool Grounded;
+	private bool holdingGun = false;
 	private bool facingRight = true;  
 	private bool wasCrouching = false;
 	private bool crouch = false;
@@ -41,6 +42,14 @@ public class PlayerController : MonoBehaviour
 			jump = true;
 			anim.SetBool("jump", true);
 		}
+		if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+			holdingGun = true;
+        }
+		else if(Input.GetKeyUp(KeyCode.Mouse0))
+        {
+			holdingGun = false;
+        }
 		if (Input.GetButtonDown("Crouch"))
 		{
 			crouch = true;
@@ -70,6 +79,7 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 		Move(horizontal * Time.fixedDeltaTime, crouch, jump);
+		anim.SetBool("holdinggun", holdingGun);
 		jump = false;
 	}
 
@@ -91,6 +101,10 @@ public class PlayerController : MonoBehaviour
 					wasCrouching = true;
 					anim.SetBool("crouch", true);
 				}
+				if(holdingGun)
+				{
+					anim.SetBool("holdinggun", true);
+				}
 				move *= CrouchSpeed;
 			}
 			else
@@ -99,6 +113,10 @@ public class PlayerController : MonoBehaviour
 				{
 					wasCrouching = false;
 					anim.SetBool("crouch", false);
+				}
+				if (!holdingGun)
+				{
+					anim.SetBool("holdinggun", false);
 				}
 			}
 			Vector3 targetVelocity = new Vector2(move * 10f, rb.velocity.y);
@@ -124,10 +142,10 @@ public class PlayerController : MonoBehaviour
 	private void Flip()
 	{
 		facingRight = !facingRight;
-
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		transform.Rotate(0, 180, 0);
+		//Vector3 theScale = transform.localScale;
+		//theScale.x *= -1;
+		//transform.localScale = theScale;
 	}
 
 	public void KeyPickUp()
@@ -141,6 +159,8 @@ public class PlayerController : MonoBehaviour
         {
 			health -= 1;
 			gameManager.Heart(health);
+			Debug.Log(health);
+			//anim.SetTrigger("hurt");
         }
 		if(other.gameObject.CompareTag("deadzone"))
         {
