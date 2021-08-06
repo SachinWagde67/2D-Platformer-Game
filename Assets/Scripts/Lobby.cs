@@ -16,7 +16,7 @@ public class Lobby : MonoBehaviour
 
     public void NewGameBtn()
     {
-        SoundManager.Instance.Play(Sounds.ButtonClick);
+        SoundManager.Instance.Play(Sounds.StartBtn);
         BtnDisable.SetActive(false);
         BtnEnable.SetActive(true);
     }

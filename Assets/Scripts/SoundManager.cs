@@ -107,4 +107,7 @@ public enum Sounds
     Teleporter,
     Bullet,
     EnemyDeath,
+    Afterdeath,
+    StartBtn,
+    PlayerHurt,
 }

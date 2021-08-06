@@ -135,8 +135,10 @@ MonoBehaviour:
   speed: 3
   distance: 0.3
   groundCheck: {fileID: 164025588749256029}
-  health: 100
+  health: 50
   anim: {fileID: 164025587248234783}
+  bloodSplash: {fileID: 4083303011504709844, guid: 0749d0decb8c96148a0077f4e5ed6279,
+    type: 3}
 --- !u!1 &164025588749256002
 GameObject:
   m_ObjectHideFlags: 0

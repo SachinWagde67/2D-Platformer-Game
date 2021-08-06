@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private ScoreManager scoreManager;
 	[SerializeField] private GameManager gameManager;
 	[SerializeField] public int health;
+	[SerializeField] private GameObject dustCloud;
 
 	const float GroundedRadius = .2f; 
 	const float CeilingRadius = .2f; 
@@ -58,7 +59,6 @@ public class PlayerController : MonoBehaviour
 		{
 			crouch = false;
 		}
-		CheckHealth();
 	}
 
     private void FixedUpdate()
@@ -135,6 +135,7 @@ public class PlayerController : MonoBehaviour
 		if (Grounded && jump)
 		{
 			Grounded = false;
+			Instantiate(dustCloud, transform.position, dustCloud.transform.rotation);
 			rb.AddForce(new Vector2(0f, JumpForce * 100));
 		}
 	}
@@ -143,9 +144,6 @@ public class PlayerController : MonoBehaviour
 	{
 		facingRight = !facingRight;
 		transform.Rotate(0, 180, 0);
-		//Vector3 theScale = transform.localScale;
-		//theScale.x *= -1;
-		//transform.localScale = theScale;
 	}
 
 	public void KeyPickUp()
@@ -159,14 +157,19 @@ public class PlayerController : MonoBehaviour
         {
 			health -= 1;
 			gameManager.Heart(health);
-			Debug.Log(health);
-			//anim.SetTrigger("hurt");
-        }
+			if (health > 0)
+			{
+				anim.SetTrigger("hurt");
+				SoundManager.Instance.Play(Sounds.PlayerHurt);
+			}
+			CheckHealth();
+		}
 		if(other.gameObject.CompareTag("deadzone"))
         {
-			health -= 3;
+			health -= 10;
 			gameManager.Heart(health);
-        }
+			CheckHealth();
+		}
     }
 
 	private void CheckHealth()

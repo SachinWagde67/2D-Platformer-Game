@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private int health = 100;
     [SerializeField] private Animator anim;
+    [SerializeField] private GameObject bloodSplash;
 
     private bool movingRight = true;
 
@@ -46,6 +47,7 @@ public class EnemyController : MonoBehaviour
     private void Die()
     {
         SoundManager.Instance.Play(Sounds.EnemyDeath);
+        Instantiate(bloodSplash, transform.position, Quaternion.identity);
         anim.SetTrigger("dead");
         speed = 0;
     }

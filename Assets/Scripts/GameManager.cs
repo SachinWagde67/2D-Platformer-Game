@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Invoke(nameof(EnableGameOver), 1.5f);
+            Invoke(nameof(EnableGameOver), 0.5f);
         }
     }
 

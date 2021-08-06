@@ -7,6 +7,11 @@ public class GameOver : MonoBehaviour
 {
     [SerializeField] private string sceneName;
 
+    private void OnEnable()
+    {
+        SoundManager.Instance.Play(Sounds.Afterdeath);
+    }
+
     public void RestartBtn()
     {
         SoundManager.Instance.Play(Sounds.ButtonClick);
@@ -16,6 +21,6 @@ public class GameOver : MonoBehaviour
     public void ExitBtn()
     {
         SoundManager.Instance.Play(Sounds.ButtonClick);
-        Application.Quit();
+        SceneManager.LoadScene("Lobby");
     }
 }
