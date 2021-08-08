@@ -151,6 +151,11 @@ public class PlayerController : MonoBehaviour
 		scoreManager.IncrementScore(10);
     }
 
+	public void WaterDropletPickUp()
+    {
+		scoreManager.IncrementScore(10);
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("enemy"))
@@ -172,7 +177,7 @@ public class PlayerController : MonoBehaviour
 		}
     }
 
-	private void CheckHealth()
+    private void CheckHealth()
     {
 		if(health <= 0)
         {
