@@ -1,17 +1,21 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ClosedTeleporter : MonoBehaviour
 {
     [SerializeField] private GameObject teleporterText;
     [SerializeField] private GameObject teleporter;
-    [SerializeField] private int scoreToCompleteLevel;
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private CinemachineVirtualCamera teleporterCM2;
+    [SerializeField] private AudioSource teleporterAudio;
 
     // Start is called before the first frame update
     void Start()
     {
+        teleporterCM2.Priority = 9;
         teleporter.SetActive(false);
         this.gameObject.SetActive(true);
         teleporterText.SetActive(false);
@@ -40,12 +44,27 @@ public class ClosedTeleporter : MonoBehaviour
 
     private void OpenTeleporter()
     {
-        int s = scoreManager.WhatisScore();
-        if(s >= scoreToCompleteLevel)
+        int k = scoreManager.WhatIsKey();
+        int d = scoreManager.WhatIsWater();
+        if(k >= scoreManager.KeyToCompleteLevel && d >= scoreManager.WaterDropletToCompleteLevel)
         {
-            teleporter.SetActive(true);
-            this.gameObject.SetActive(false);
-            teleporterText.SetActive(false);
+            teleporterCM2.Priority = 11;
+            Invoke(nameof(DisableDoor), 2f);
+            Invoke(nameof(ChangeCam), 3f);
         }
+        
+    }
+
+    private void DisableDoor()
+    {
+        teleporter.SetActive(true);
+        this.gameObject.SetActive(false);
+        teleporterText.SetActive(false);
+        teleporterAudio.Play();
+    }
+
+    private void ChangeCam()
+    {
+        teleporterCM2.Priority = 9;
     }
 }

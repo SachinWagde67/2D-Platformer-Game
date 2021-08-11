@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -146,15 +145,15 @@ public class PlayerController : MonoBehaviour
 		transform.Rotate(0, 180, 0);
 	}
 
-	public void KeyPickUp()
-    {
-		scoreManager.IncrementScore(10);
-    }
+    //public void KeyPickUp()
+    //{
+    //    scoreManager.IncrementScore(10);
+    //}
 
-	public void WaterDropletPickUp()
-    {
-		scoreManager.IncrementScore(10);
-    }
+    //public void WaterDropletPickUp()
+    //{
+    //    scoreManager.IncrementScore(10);
+    //}
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -175,6 +174,21 @@ public class PlayerController : MonoBehaviour
 			gameManager.Heart(health);
 			CheckHealth();
 		}
+		if(other.gameObject.CompareTag("key"))
+        {
+			scoreManager.IncrementScore(10);
+			scoreManager.IncrementKey(1);
+        }
+		if(other.gameObject.CompareTag("waterdroplet"))
+        {
+			scoreManager.IncrementScore(10);
+			scoreManager.IncrementWaterDroplet(1);
+        }
+		if(other.gameObject.CompareTag("food"))
+        {
+			scoreManager.IncrementScore(10);
+			scoreManager.IncrementFood(1);
+        }
     }
 
     private void CheckHealth()

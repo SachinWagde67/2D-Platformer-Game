@@ -8,6 +8,9 @@ TagManager:
   - teleporter
   - enemy
   - deadzone
+  - key
+  - waterdroplet
+  - food
   layers:
   - Default
   - TransparentFX
