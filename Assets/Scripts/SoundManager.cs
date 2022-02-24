@@ -9,7 +9,8 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get { return instance; } }
     public AudioSource soundEffect;
     public bool isMute = false;
-    public float Volume = 1f;
+    public float musicVolume;
+    public float effectVolume;
     public AudioSource soundMusic;
     public SoundType[] allSounds;
 
@@ -28,7 +29,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        SetVolume(0.5f);
+        SetVolume(musicVolume,effectVolume);
         PlayMusic(Sounds.Music);
     }
 
@@ -37,11 +38,10 @@ public class SoundManager : MonoBehaviour
         isMute = status;
     }
 
-    public void SetVolume(float volume)
-    {
-        Volume = volume;
-        soundEffect.volume = volume;
-        soundMusic.volume = volume;
+    public void SetVolume(float musicvolume,float effectvolume)
+    { 
+        soundEffect.volume = effectVolume;
+        soundMusic.volume = musicvolume;
     }
 
     public void PlayMusic(Sounds sounds)
@@ -105,4 +105,9 @@ public enum Sounds
     PlayerDeath,
     KeyPick,
     Teleporter,
+    Bullet,
+    EnemyDeath,
+    Afterdeath,
+    StartBtn,
+    PlayerHurt,
 }

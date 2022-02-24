@@ -8,6 +8,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float distance;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private int health = 100;
+    [SerializeField] private Animator anim;
+    [SerializeField] private GameObject bloodSplash;
 
     private bool movingRight = true;
 
@@ -29,5 +32,23 @@ public class EnemyController : MonoBehaviour
                 movingRight = true;
             }
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            Die();
+            Destroy(gameObject, 0.2f);
+        }
+    }
+    
+    private void Die()
+    {
+        SoundManager.Instance.Play(Sounds.EnemyDeath);
+        Instantiate(bloodSplash, transform.position, Quaternion.identity);
+        anim.SetTrigger("dead");
+        speed = 0;
     }
 }

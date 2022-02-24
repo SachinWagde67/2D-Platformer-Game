@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: 21300006
     second: BulletImpact2_3
+  - first:
+      213: -3258514256357521110
+    second: BulletImpact2_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -119,7 +122,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,7 +143,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,7 +164,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,12 +180,12 @@ TextureImporter:
       name: BulletImpact2_3
       rect:
         serializedVersion: 2
-        x: 256
+        x: 257
         y: 0
-        width: 256
+        width: 149
         height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.858, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,10 +197,31 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BulletImpact2_4
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 0
+        width: 107
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2983465c8e67c2d0800000000000000
+      internalID: -3258514256357521110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 35ff72a39fd33d84b8c12f296d678273
     internalID: 0
     vertices: []
     indices: 

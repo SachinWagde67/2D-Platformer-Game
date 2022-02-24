@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,11 +13,13 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private ScoreManager scoreManager;
 	[SerializeField] private GameManager gameManager;
 	[SerializeField] public int health;
+	[SerializeField] private GameObject dustCloud;
 
 	const float GroundedRadius = .2f; 
 	const float CeilingRadius = .2f; 
 	private float horizontal;
-	private bool Grounded;            
+	private bool Grounded;
+	private bool holdingGun = false;
 	private bool facingRight = true;  
 	private bool wasCrouching = false;
 	private bool crouch = false;
@@ -41,6 +42,14 @@ public class PlayerController : MonoBehaviour
 			jump = true;
 			anim.SetBool("jump", true);
 		}
+		if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+			holdingGun = true;
+        }
+		else if(Input.GetKeyUp(KeyCode.Mouse0))
+        {
+			holdingGun = false;
+        }
 		if (Input.GetButtonDown("Crouch"))
 		{
 			crouch = true;
@@ -49,7 +58,6 @@ public class PlayerController : MonoBehaviour
 		{
 			crouch = false;
 		}
-		CheckHealth();
 	}
 
     private void FixedUpdate()
@@ -70,6 +78,7 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 		Move(horizontal * Time.fixedDeltaTime, crouch, jump);
+		anim.SetBool("holdinggun", holdingGun);
 		jump = false;
 	}
 
@@ -91,6 +100,10 @@ public class PlayerController : MonoBehaviour
 					wasCrouching = true;
 					anim.SetBool("crouch", true);
 				}
+				if(holdingGun)
+				{
+					anim.SetBool("holdinggun", true);
+				}
 				move *= CrouchSpeed;
 			}
 			else
@@ -99,6 +112,10 @@ public class PlayerController : MonoBehaviour
 				{
 					wasCrouching = false;
 					anim.SetBool("crouch", false);
+				}
+				if (!holdingGun)
+				{
+					anim.SetBool("holdinggun", false);
 				}
 			}
 			Vector3 targetVelocity = new Vector2(move * 10f, rb.velocity.y);
@@ -117,6 +134,7 @@ public class PlayerController : MonoBehaviour
 		if (Grounded && jump)
 		{
 			Grounded = false;
+			Instantiate(dustCloud, transform.position, dustCloud.transform.rotation);
 			rb.AddForce(new Vector2(0f, JumpForce * 100));
 		}
 	}
@@ -124,16 +142,18 @@ public class PlayerController : MonoBehaviour
 	private void Flip()
 	{
 		facingRight = !facingRight;
-
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		transform.Rotate(0, 180, 0);
 	}
 
-	public void KeyPickUp()
-    {
-		scoreManager.IncrementScore(10);
-    }
+    //public void KeyPickUp()
+    //{
+    //    scoreManager.IncrementScore(10);
+    //}
+
+    //public void WaterDropletPickUp()
+    //{
+    //    scoreManager.IncrementScore(10);
+    //}
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -141,15 +161,37 @@ public class PlayerController : MonoBehaviour
         {
 			health -= 1;
 			gameManager.Heart(health);
-        }
+			if (health > 0)
+			{
+				anim.SetTrigger("hurt");
+				SoundManager.Instance.Play(Sounds.PlayerHurt);
+			}
+			CheckHealth();
+		}
 		if(other.gameObject.CompareTag("deadzone"))
         {
-			health -= 3;
+			health -= 10;
 			gameManager.Heart(health);
+			CheckHealth();
+		}
+		if(other.gameObject.CompareTag("key"))
+        {
+			scoreManager.IncrementScore(10);
+			scoreManager.IncrementKey(1);
+        }
+		if(other.gameObject.CompareTag("waterdroplet"))
+        {
+			scoreManager.IncrementScore(10);
+			scoreManager.IncrementWaterDroplet(1);
+        }
+		if(other.gameObject.CompareTag("food"))
+        {
+			scoreManager.IncrementScore(10);
+			scoreManager.IncrementFood(1);
         }
     }
 
-	private void CheckHealth()
+    private void CheckHealth()
     {
 		if(health <= 0)
         {

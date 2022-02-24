@@ -6,17 +6,14 @@ public class Key : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float duration;
-    [SerializeField] private GameObject key;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private Rigidbody2D rb;
-    private PlayerController playerController;
     private Collider2D KeyCollider;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerController = FindObjectOfType<PlayerController>();
         KeyCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -25,7 +22,6 @@ public class Key : MonoBehaviour
         if(other.gameObject.CompareTag("player"))
         {
             KeyCollider.enabled = false;
-            playerController.KeyPickUp();
             SoundManager.Instance.Play(Sounds.KeyPick);
             rb.velocity = transform.up * Time.deltaTime * speed;
             StartCoroutine("FadeOutAnimation");

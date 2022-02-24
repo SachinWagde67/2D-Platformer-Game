@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Invoke(nameof(EnableGameOver), 1.5f);
+            Invoke(nameof(EnableGameOver), 0.5f);
         }
     }
 
