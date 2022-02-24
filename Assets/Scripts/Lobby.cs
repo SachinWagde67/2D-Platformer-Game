@@ -16,13 +16,30 @@ public class Lobby : MonoBehaviour
 
     public void NewGameBtn()
     {
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         BtnDisable.SetActive(false);
         BtnEnable.SetActive(true);
     }
 
     public void LevelBtn(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+       
+        LevelStatus levelStatus = LevelManager.Instance.GetLevelStatus(sceneName);
+        switch (levelStatus)
+        {
+            case LevelStatus.Locked:
+                Debug.Log("Can't Play this Level");
+                break;
+
+            case LevelStatus.Unlocked:
+                SoundManager.Instance.Play(Sounds.ButtonClick);
+                SceneManager.LoadScene(sceneName);
+                break;
+
+            case LevelStatus.Completed:
+                SceneManager.LoadScene(sceneName);
+                break;
+        }
     }
 
     public void ExitBtn()

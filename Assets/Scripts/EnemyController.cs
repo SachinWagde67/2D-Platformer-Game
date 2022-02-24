@@ -14,7 +14,6 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
-
         RaycastHit2D groundinfo = Physics2D.Raycast(groundCheck.position, Vector2.down, distance);
 
         if(!groundinfo.collider)
