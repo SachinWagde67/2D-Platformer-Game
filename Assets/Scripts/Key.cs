@@ -26,6 +26,7 @@ public class Key : MonoBehaviour
         {
             KeyCollider.enabled = false;
             playerController.KeyPickUp();
+            SoundManager.Instance.Play(Sounds.KeyPick);
             rb.velocity = transform.up * Time.deltaTime * speed;
             StartCoroutine("FadeOutAnimation");
             Destroy(gameObject,1f); 

@@ -106,10 +106,8 @@ public class PlayerController : MonoBehaviour
 			
 			if (move > 0 && !facingRight)
 			{
-				
 				Flip();
 			}
-			
 			else if (move < 0 && facingRight)
 			{
 				Flip();
@@ -146,7 +144,8 @@ public class PlayerController : MonoBehaviour
         }
 		if(other.gameObject.CompareTag("deadzone"))
         {
-			gameManager.EnableGameOver();
+			health -= 3;
+			gameManager.Heart(health);
         }
     }
 
@@ -155,6 +154,7 @@ public class PlayerController : MonoBehaviour
 		if(health <= 0)
         {
 			anim.SetTrigger("dead");
+			SoundManager.Instance.Play(Sounds.PlayerDeath);
 			speed = 0;
         }
     }
