@@ -9,7 +9,6 @@ public class GameOver : MonoBehaviour
 
     public void RestartBtn(string SceneName)
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneName);
     }
 

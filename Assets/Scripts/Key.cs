@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    private PlayerController playerController;
-    private Rigidbody2D rb;
-    private Collider2D KeyCollider;
-    [SerializeField] private GameObject key;
     [SerializeField] private float speed;
-    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float duration;
+    [SerializeField] private GameObject key;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
+    private Rigidbody2D rb;
+    private PlayerController playerController;
+    private Collider2D KeyCollider;
 
     private void Awake()
     {
-        playerController = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
+        playerController = FindObjectOfType<PlayerController>();
         KeyCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -28,7 +28,7 @@ public class Key : MonoBehaviour
             playerController.KeyPickUp();
             rb.velocity = transform.up * Time.deltaTime * speed;
             StartCoroutine("FadeOutAnimation");
-            Invoke(nameof(DestroyObject), 1f);
+            Destroy(gameObject,1f); 
         }
     }
 
@@ -36,17 +36,12 @@ public class Key : MonoBehaviour
     {
         float counter = 0;
         Color spriteColor = spriteRenderer.material.color;
-        while (counter < duration)
+        while(counter < duration)
         {
             counter += Time.deltaTime;
             float alpha = Mathf.Lerp(1, 0, counter);
             spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
             yield return null;
         }       
-    }
-
-    private void DestroyObject()
-    {
-        Destroy(this.gameObject);
     }
 }
