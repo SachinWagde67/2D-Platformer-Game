@@ -6,19 +6,23 @@ using UnityEngine.SceneManagement;
 public class Teleporter : MonoBehaviour
 {
     [SerializeField] private string sceneName;
+    [SerializeField] private GameObject GameCompleteCanvas;
+    [SerializeField] private GameObject HeartCanvas;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("player"))
         {
-            NextScene(sceneName);
+            SoundManager.Instance.Play(Sounds.Teleporter);
+            Invoke(nameof(NextScene),1f);
         }
     }
 
-    private void NextScene(string SceneName)
+    private void NextScene()
     {
         LevelManager.Instance.MarkCurrentLevelComplete();
-        SceneManager.LoadScene(SceneName);
+        HeartCanvas.SetActive(false);
+        GameCompleteCanvas.SetActive(true);
     }
 }
 
