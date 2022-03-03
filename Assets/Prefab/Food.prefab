@@ -136,3 +136,4 @@ MonoBehaviour:
   speed: 180
   duration: 0.8
   spriteRenderer: {fileID: 1968223541991067150}
+  FoodCollider: {fileID: 1968223541991067148}

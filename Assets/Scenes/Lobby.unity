@@ -1510,8 +1510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffect: {fileID: 244270356}
   isMute: 0
-  musicVolume: 0.5
-  effectVolume: 0.8
+  musicVolume: 0
+  effectVolume: 0
   soundMusic: {fileID: 1677947303}
   allSounds:
   - soundType: 0

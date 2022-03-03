@@ -7,14 +7,13 @@ public class Food : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float duration;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Collider2D FoodCollider;
 
     private Rigidbody2D rb;
-    private Collider2D FoodCollider;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        FoodCollider = GetComponent<CircleCollider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)

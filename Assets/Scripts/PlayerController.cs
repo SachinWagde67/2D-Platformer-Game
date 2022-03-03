@@ -145,16 +145,6 @@ public class PlayerController : MonoBehaviour
 		transform.Rotate(0, 180, 0);
 	}
 
-    //public void KeyPickUp()
-    //{
-    //    scoreManager.IncrementScore(10);
-    //}
-
-    //public void WaterDropletPickUp()
-    //{
-    //    scoreManager.IncrementScore(10);
-    //}
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("enemy"))
