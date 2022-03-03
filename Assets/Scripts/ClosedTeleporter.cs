@@ -12,7 +12,6 @@ public class ClosedTeleporter : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera teleporterCM2;
     [SerializeField] private AudioSource teleporterAudio;
 
-    // Start is called before the first frame update
     void Start()
     {
         teleporterCM2.Priority = 9;
@@ -45,8 +44,9 @@ public class ClosedTeleporter : MonoBehaviour
     private void OpenTeleporter()
     {
         int k = scoreManager.WhatIsKey();
-        int d = scoreManager.WhatIsWater();
-        if(k >= scoreManager.KeyToCompleteLevel && d >= scoreManager.WaterDropletToCompleteLevel)
+        int w = scoreManager.WhatIsWater();
+        int f = scoreManager.WhatIsFood();
+        if(k >= scoreManager.KeyToCompleteLevel && w >= scoreManager.WaterDropletToCompleteLevel && f >= scoreManager.FoodToCompleteLevel)
         {
             teleporterCM2.Priority = 11;
             Invoke(nameof(DisableDoor), 2f);
