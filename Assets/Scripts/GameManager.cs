@@ -21,9 +21,9 @@ public class GameManager : MonoBehaviour
 
     public void Heart(int health)
     {
-        if(health > 3)
+        if(health > hearts.Length)
         {
-            health = 3;
+            health = hearts.Length;
         }
         if(health > 0)
         {

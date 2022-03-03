@@ -31,7 +31,7 @@ public class Food : MonoBehaviour
     private IEnumerator FadeOutAnimation()
     {
         float counter = 0;
-        Color spriteColor = spriteRenderer.material.color;
+        Color spriteColor = spriteRenderer.color;
         while (counter < duration)
         {
             counter += Time.deltaTime;
