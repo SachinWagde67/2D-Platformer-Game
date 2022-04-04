@@ -5,7 +5,7 @@ The 2D platformer game to be forked something like mario its a clean repo made f
 - Player movement using WASD keys.
 - Shoot Bullets using Left Mouse Button.
 
-# Features of the game
+# Implementation and Design Patterns Used
 - Use of unity physics and collisions for implementing player mechanics.
 - Added different types of collectibles.
 - Added level win conditions.
